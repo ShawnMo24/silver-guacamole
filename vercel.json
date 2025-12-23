@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "name": "lpm-cerebral-console",
+  "builds": [
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    { "src": "/api/brain", "dest": "/api/brain.js" },
+    { "src": "/api/mapbox/token", "dest": "/api/mapbox.js" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ],
+  "env": {
+    "OPENAI_API_KEY_GOOGLE": "@openai_api_key_google",
+    "OPENAI_API_KEY_DEEPSEEK": "@openai_api_key_deepseek",
+    "OPENAI_API_KEY": "@openai_api_key",
+    "MAPBOX_MRSG": "@mapbox_mrsg"
+  }
+}
